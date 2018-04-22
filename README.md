@@ -1,6 +1,6 @@
 # Airport_Baggage_Routing
 
-The application aims to find the shortest path based on the distance for routing baggage at airport.
+The application aims to find the shortest path and distance for routing baggage at airport.
 
 To run the application, use com.barclays.application.Main class.
 
