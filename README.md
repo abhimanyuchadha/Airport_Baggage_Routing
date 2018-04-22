@@ -38,7 +38,7 @@ UA18 A5 LAX 10:15
 0005 A7 ARRIVAL  
 
 
-The ouput of the application will be the optimized route for the each bag
+The ouput of the application will be the optimized route for the each bag.  
 Following will be the output for the above Input:  
 
 0001 Concourse_A_Ticketing A5 A1 : 11  
