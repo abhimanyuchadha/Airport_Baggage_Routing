@@ -61,7 +61,7 @@ public class Main {
 	 */
 	public static String[] acceptInput(Map<Integer, Map<Integer, Integer>> graphMap) throws IOException {
 		BaggageRoute route = BaggageRoute.getInstance();
-		System.out.println("Please enter the input followed by a blank line and press enter (new line char)");
+		System.out.println("Please enter the input followed by a blank line and press enter(press enter button twice after input)");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String line;
 		line = br.readLine();
