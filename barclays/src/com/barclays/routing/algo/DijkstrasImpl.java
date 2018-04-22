@@ -27,7 +27,6 @@ public class DijkstrasImpl {
 	 *         distance between them
 	 */
 	public static ShortestPath findShortestPath(int[][] graph, int source, int destination) {
-		BaggageRoute route = BaggageRoute.getInstance();
 		ShortestPath shortestPath = null;
 		HashSet<Integer> setOfNodes = new HashSet<Integer>();
 		Integer[] parentNodeArray = new Integer[graph.length];
