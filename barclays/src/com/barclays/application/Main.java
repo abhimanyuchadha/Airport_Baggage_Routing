@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.barclays.routing.BaggageRoute;
+import com.barclays.util.ApplicationUtils;
 
 /**
  * @author Abhimanyu
@@ -39,30 +40,12 @@ public class Main {
 			System.err.println(
 					"Please make sure the Section input is in the order; Conveyor System, Departures and Bags");
 		}
-		int[][] graph = convertToGraphArray(graphMap);
+		int[][] graph = ApplicationUtils.convertToGraphArray(graphMap);
 		route.findAndPrintOptimizedRoute(graph, findShortestPathFor);
 
 	}
 
-	private static int[][] convertToGraphArray(Map<Integer, Map<Integer, Integer>> graphMap) {
-
-		int[][] graph = new int[graphMap.size()][graphMap.size()];
-
-		for (int i = 0; i < graph.length; i++) {
-			Map<Integer, Integer> map = graphMap.get(i);
-			for (int j = 0; j < graph.length; j++) {
-				// to make sure all the non existent edges are marked -1
-				if (i != j && graph[i][j] == 0)
-					graph[i][j] = -1;
-				if (null != map && null != map.get(j)) {
-					graph[i][j] = map.get(j);
-
-				}
-			}
-		}
-
-		return graph;
-	}
+	
 
 	/**
 	 * 
@@ -105,6 +88,13 @@ public class Main {
 
 	}
 
+	/**
+	 * The method creates a map graph based on the input by the user 
+	 * @param graphMap
+	 * @param node1
+	 * @param node2
+	 * @param distance
+	 */
 	private static void addNodeAndEdgeToMap(Map<Integer, Map<Integer, Integer>> graphMap, String node1, String node2,
 			String distance) {
 		BaggageRoute route = BaggageRoute.getInstance();
@@ -116,12 +106,10 @@ public class Main {
 			edgeMap = graphMap.get(route.getNodeNumber(node1.trim()));
 		}
 		if (null == edgeMap.get(route.getNodeNumber(node2.trim()))) {
-			edgeMap.put(route.getNodeNumber(node2.trim()), getInt(distance));
+			edgeMap.put(route.getNodeNumber(node2.trim()), ApplicationUtils.getInt(distance));
 		}
 
 	}
 
-	private static Integer getInt(String string) {
-		return Integer.valueOf(string.trim());
-	}
+	
 }
