@@ -1,4 +1,4 @@
-package barclays;
+package com.barclays.application;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.barclays.routing.BaggageRoute;
 
 /**
  * @author Abhimanyu
@@ -27,14 +29,15 @@ public class Main {
 	public static void main(String[] args) {
 		BaggageRoute route = BaggageRoute.getInstance();
 		Map<Integer, Map<Integer, Integer>> graphMap = new HashMap<Integer, Map<Integer, Integer>>();
-		String[] findShortestPathFor=null;
+		String[] findShortestPathFor = null;
 		try {
 			findShortestPathFor = acceptInput(graphMap);
 		} catch (IOException e) {
 			System.err.println("An Error occured while taking input, please re-run the program");
 			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("Please make sure the Section input is in the order; Conveyor System, Departures and Bags");
+			System.err.println(
+					"Please make sure the Section input is in the order; Conveyor System, Departures and Bags");
 		}
 		int[][] graph = convertToGraphArray(graphMap);
 		route.findAndPrintOptimizedRoute(graph, findShortestPathFor);

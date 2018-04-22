@@ -1,7 +1,10 @@
-package barclays;
+package com.barclays.routing.algo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import com.barclays.routing.BaggageRoute;
+import com.barclays.routing.ShortestPath;
 
 /**
  * @author Abhimanyu
@@ -23,7 +26,7 @@ public class DijkstrasImpl {
 	 * @return the shortest path between source and destination based on the
 	 *         distance between them
 	 */
-	public ShortestPath findShortestPath(int[][] graph, int source, int destination) {
+	public static ShortestPath findShortestPath(int[][] graph, int source, int destination) {
 		BaggageRoute route = BaggageRoute.getInstance();
 		ShortestPath shortestPath = null;
 		HashSet<Integer> setOfNodes = new HashSet<Integer>();
@@ -60,7 +63,17 @@ public class DijkstrasImpl {
 		return shortestPath;
 	}
 
-	private ShortestPath getShortestPathAndDistance(int source, int destination, Integer[] parentNodeArray,
+	/**
+	 * The method collaborates the shortest path and total shortest distance from
+	 * source to destination node
+	 * 
+	 * @param source
+	 * @param destination
+	 * @param parentNodeArray
+	 * @param shortestDistanceFromSource
+	 * @return an instance of ShortestPath
+	 */
+	private static ShortestPath getShortestPathAndDistance(int source, int destination, Integer[] parentNodeArray,
 			int[] shortestDistanceFromSource) {
 		ShortestPath shortestPath = new ShortestPath();
 		ArrayList<Integer> path = new ArrayList<>();
@@ -70,7 +83,15 @@ public class DijkstrasImpl {
 		return shortestPath;
 	}
 
-	private void addParentToList(ArrayList<Integer> path, Integer destination, Integer[] parentNodeArray) {
+	/**
+	 * The method traverses through the array to find the parent of the destination
+	 * until the source node is reached.
+	 * 
+	 * @param path
+	 * @param destination
+	 * @param parentNodeArray
+	 */
+	private static void addParentToList(ArrayList<Integer> path, Integer destination, Integer[] parentNodeArray) {
 		// TODO Auto-generated method stub
 		if (destination == null) {
 			return;
@@ -79,7 +100,16 @@ public class DijkstrasImpl {
 		path.add(destination);
 	}
 
-	private int getMinimumNode(int[] shortestDistanceFromSource, HashSet<Integer> setOfNodes) {
+	/**
+	 * The method finds the minimum of the nodes in the set, this is the part of the
+	 * greedy approach adopted by the Dijkstra's algorithm
+	 * 
+	 * @param shortestDistanceFromSource
+	 * @param setOfNodes
+	 * @return the minimum node number in the intersection of the shortestDistance
+	 *         array and setOfNodes
+	 */
+	private static int getMinimumNode(int[] shortestDistanceFromSource, HashSet<Integer> setOfNodes) {
 		int min = Integer.MAX_VALUE;
 		int node = -1;
 		for (int i = 0; i < shortestDistanceFromSource.length; i++) {

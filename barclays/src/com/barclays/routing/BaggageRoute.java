@@ -1,11 +1,14 @@
-package barclays;
+package com.barclays.routing;
 
 import java.util.HashMap;
 
+import com.barclays.routing.algo.DijkstrasImpl;
+
 /**
- * @author Abhimanyu
- * This class is a singleton class for mapping the string nodes/ flight number to numerical values to ease the calculations.
- * This is basically a mediator between the input Main class and the shortest distance class. 
+ * @author Abhimanyu This class is a singleton class for mapping the string
+ *         nodes/ flight number to numerical values to ease the calculations.
+ *         This is basically a mediator between the input Main class and the
+ *         shortest distance class.
  */
 public class BaggageRoute {
 
@@ -26,12 +29,10 @@ public class BaggageRoute {
 	private HashMap<Integer, String> reverseNodeMap = new HashMap<Integer, String>();
 	private Integer nodeValue = 0;
 	private HashMap<String, String> flightToGate = new HashMap<String, String>();
-	private DijkstrasImpl dijkstrasImpl = new DijkstrasImpl();
 
 	{
 		flightToGate.put("ARRIVAL", "BaggageClaim");
 	}
-
 
 	/**
 	 * @param key
@@ -87,8 +88,8 @@ public class BaggageRoute {
 	/**
 	 * @param graph
 	 * @param inputArray
-	 *            is the raw input of the Bags section
-	 *            prints the output of calculateOptimizedRoute method for every bag entered
+	 *            is the raw input of the Bags section prints the output of
+	 *            calculateOptimizedRoute method for every bag entered
 	 * 
 	 */
 	public void findAndPrintOptimizedRoute(int[][] graph, String[] inputArray) {
@@ -103,15 +104,17 @@ public class BaggageRoute {
 	/**
 	 * @param graph
 	 * @param input
-	 *            is the single line input from the bags section, where the source and destination for the baggage is mentioned
-	 * @return a string representing a bag number, the shortest path and the total shortest distance for routing 
+	 *            is the single line input from the bags section, where the source
+	 *            and destination for the baggage is mentioned
+	 * @return a string representing a bag number, the shortest path and the total
+	 *         shortest distance for routing
 	 */
 	private String calculateOptimizedRoute(int[][] graph, String input) {
 
 		String[] args = input.split(" ");
 		int source = getNodeNumber(args[1].trim());
 		int destination = getNodeNumber(getNode(args[2].trim()));
-		ShortestPath dijkstrasPath = dijkstrasImpl.findShortestPath(graph, source, destination);
+		ShortestPath dijkstrasPath = DijkstrasImpl.findShortestPath(graph, source, destination);
 		String output = args[0] + " " + dijkstrasPath.covertDijkstrasPathToBaggagePath(getInstance());
 		return output;
 	}
