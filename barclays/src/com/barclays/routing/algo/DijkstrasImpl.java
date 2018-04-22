@@ -3,7 +3,6 @@ package com.barclays.routing.algo;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.barclays.routing.BaggageRoute;
 import com.barclays.routing.ShortestPath;
 
 /**
@@ -91,7 +90,6 @@ public class DijkstrasImpl {
 	 * @param parentNodeArray
 	 */
 	private static void addParentToList(ArrayList<Integer> path, Integer destination, Integer[] parentNodeArray) {
-		// TODO Auto-generated method stub
 		if (destination == null) {
 			return;
 		}
